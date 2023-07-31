@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(starling2)
+project(starling2_interface)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -7,8 +7,8 @@ project(starling2)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED geometry_msgs tf2_ros rospy)
-catkin_package(CATKIN_DEPENDS rospy geometry_msgs tf2_ros )
+find_package(catkin REQUIRED geometry_msgs tf2_ros rospy roscpp)
+catkin_package(CATKIN_DEPENDS roscpp rospy geometry_msgs tf2_ros )
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -113,8 +113,8 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
-# ${catkin_INCLUDE_DIRS}
+ include
+ ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -130,7 +130,8 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/starling2_node.cpp)
+add_executable(pose_to_tf src/pose_to_tf.cpp)
+target_link_libraries(pose_to_tf ${catkin_LIBRARIES})
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -201,6 +202,6 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-catkin_install_python(PROGRAMS scripts/pose_to_tf.py scripts/tf_transform.py scripts/pose_to_tf_redo.py
+catkin_install_python(PROGRAMS scripts/pose_to_tf.py 
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
