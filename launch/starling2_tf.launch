@@ -1,7 +1,22 @@
 <launch>
 
-    <node pkg="starling2_interface" type="pose_to_tf.py" name="pose_to_tf_node" />
-    <node pkg="tf2_ros" type="static_transform_publisher" name="qvio_transform" args="0 0 0 0 0 3.14 /odom /map" />
+    <arg name="use_vicon"      default="false"/>
+    <arg name="record_bag"      default="false"/>
+
+    <group if="$(arg use_vicon)">
+      <include file="$(find mocap_vicon)/launch/vicon.launch"></include>
+    </group>
+
+    <group if="$(arg record_bag)">
+      <node name="rosbag_recorder" pkg="rosbag" type="record" args="-a" output="screen" />
+    </group>
+
+    <node pkg="starling2_interface" type="pose_to_tf" name="pose_to_tf_node" output="screen" />
+    <!--node pkg="tf2_ros" type="static_transform_publisher" name="odom_to_local_tf" args="0 0 0 0 0 3.14 /odom /local" /-->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="local_to_odom_tf" args="0 0 0 0 0 3.14 /local /odom" />
+    <node pkg="tf2_ros" type="static_transform_publisher" name="normalize_starling_coords" args="0 0 0 0 0 3.14 /body_local /body" />
+    <node pkg="tf2_ros" type="static_transform_publisher" name="body_to_imu_tf" args=".0407 -0.006 -0.0188 0 0 0 /body_local /imu" />
+
 
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find starling2_interface)/rviz/starling2.rviz" />
 

@@ -28,8 +28,8 @@ void PoseToTF::callback(const geometry_msgs::PoseStamped::ConstPtr& pose)
   ROS_INFO("Received pose!");
 
   geometry_msgs::TransformStamped static_transformStamped;
-  static_transformStamped.header.frame_id = "map";
-  static_transformStamped.child_frame_id = "qvio";
+  static_transformStamped.header.frame_id = "local";
+  static_transformStamped.child_frame_id = "body_local";
 
   static_transformStamped.transform.translation.x = pose->pose.position.x;
   static_transformStamped.transform.translation.y = pose->pose.position.y;

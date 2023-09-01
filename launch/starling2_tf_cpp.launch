@@ -1,7 +1,0 @@
-<launch>
-
-    <node pkg="starling2_interface" type="pose_to_tf" name="pose_to_tf_node" output="screen" />
-    <node pkg="tf2_ros" type="static_transform_publisher" name="qvio_transform" args="0 0 0 0 0 3.14 /odom /map" />
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find starling2_interface)/rviz/starling2.rviz" />
-
-</launch>
