@@ -8,8 +8,7 @@
 
   <node pkg="quadrotor_ukf" 
     type="quadrotor_ukf" 
-    name="quadrotor_ukf" 
-    output="screen">
+    name="quadrotor_ukf" >
     <remap from="~odom_slam" to="qvio/odometry"/>
     <remap from="~imu" to="imu_apps"/>
     <param name="frame_id" value="odom"/>
