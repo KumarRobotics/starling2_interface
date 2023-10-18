@@ -7,6 +7,15 @@
   <arg name="fcu_protocol" default="v2.0" />
   <arg name="respawn_mavros" default="false" />
 
+  <arg name="robot" default="quadrotor"/>
+	<arg name="mass" default="1.74"/>
+	<arg name="max_prop_force" default="7"/>
+  <arg name="gains_file" default="$(find control_launch)/config/so3_control_gains.yaml"/>
+	<arg name="odom" default="odom"/>
+
+	<arg name="start_nodelet_manager" default="true"/>
+	<arg name="manager" default="$(arg robot)_manager_control"/>
+
   <include file="$(find mavros)/launch/node.launch">
     <arg name="pluginlists_yaml" value="$(find mavros)/launch/px4_pluginlists.yaml" />
     <arg name="config_yaml" value="$(find mavros)/launch/px4_config.yaml" />
@@ -21,5 +30,6 @@
   </include>
 
   <include file="$(find mavros_interface)/launch/fla250.launch" />
+  <include file="$(find control_launch/launch/control_mp.launch" />
 
 </launch>
