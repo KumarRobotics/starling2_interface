@@ -1,0 +1,6 @@
+<launch>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find starling2_interface)/rviz/vicon_analysis.rviz" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="fixed_frame_vicon_tf" args="0 0 0 0 0 0 /odom /mocap" />
+
+</launch>
