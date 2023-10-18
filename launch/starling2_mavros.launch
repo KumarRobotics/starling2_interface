@@ -20,6 +20,6 @@
     <arg name="respawn_mavros" default="$(arg respawn_mavros)" />
   </include>
 
-  <include file="$(find mavros_interface)/launch/fla.launch" />
+  <include file="$(find mavros_interface)/launch/fla250.launch" />
 
 </launch>
