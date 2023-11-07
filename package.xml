@@ -53,11 +53,13 @@
   <build_depend>roscpp</build_depend>
   <build_depend>geometry_msgs</build_depend>
   <build_depend>tf2_ros</build_depend>
+  <build_depend>kr_trackers_manager</build_depend>
 
   <exec_depend>rospy</exec_depend>
   <exec_depend>roscpp</exec_depend>
   <exec_depend>geometry_msgs</exec_depend>
   <exec_depend>tf2_ros</exec_depend>
+  <exec_depend>kr_trackers_manager</exec_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->

@@ -7,7 +7,7 @@ project(starling2_interface)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED geometry_msgs tf2_ros rospy roscpp)
+find_package(catkin REQUIRED geometry_msgs tf2_ros rospy roscpp kr_trackers_manager)
 catkin_package(CATKIN_DEPENDS roscpp rospy geometry_msgs tf2_ros )
 
 ## System dependencies are found with CMake's conventions
