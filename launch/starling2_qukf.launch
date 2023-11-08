@@ -2,6 +2,11 @@
   <arg name="use_vicon"      default="false"/>
   <arg name="record_bag"      default="false"/>
 
+  <arg name="odom_slam_topic"      default="qvio/odometry"/>
+  <arg name="imu_topic"            default="imu_apps"/>
+  <arg name="odom_frame_id"        default="odom"/>
+  <arg name="imu_frame_id"         default="imu"/>
+
   <group if="$(arg record_bag)">
     <node name="rosbag_recorder" pkg="rosbag" type="record" args="-a" output="screen" />
   </group>
@@ -9,10 +14,10 @@
   <node pkg="quadrotor_ukf" 
     type="quadrotor_ukf" 
     name="quadrotor_ukf" >
-    <remap from="~odom_slam" to="qvio/odometry"/>
-    <remap from="~imu" to="imu_apps"/>
-    <param name="frame_id" value="odom"/>
-    <param name="imu_frame_id" value="imu" />
+    <remap from="~odom_slam" to="$(arg odom_slam_topic)"/>
+    <remap from="~imu" to="$(arg imu_topic)"/>
+    <param name="frame_id" value="$(arg odom_frame_id)"/>
+    <param name="imu_frame_id" value="$(arg imu_frame_id)" />
   </node>
 
   <node pkg="tf2_ros" type="static_transform_publisher" name="local_to_odom_tf" args="0 0 0 0 0 3.14 /local /odom" />
