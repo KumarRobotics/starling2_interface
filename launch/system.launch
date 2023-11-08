@@ -1,1 +1,66 @@
+<?xml version="3.0" encoding="UTF-8"?>
+<launch>
+  <!-- Args for UKF /-->
+  <arg name="use_vicon"               default="false"/>
+  <arg name="record_bag"              default="false"/>
 
+  <arg name="odom_slam_topic"         default="qvio/odometry"/>
+  <arg name="imu_topic"               default="imu_apps"/>
+  <arg name="odom_frame_id"           default="odom"/>
+  <arg name="imu_frame_id"            default="imu"/>
+
+  <!-- Args for Mavros & Control/-->
+  <arg name="fcu_url"                 default="udp://127.0.0.1:14551@:14551"/>
+  <arg name="gcs_url"                 default=""/>
+  <arg name="tgt_system"              default="$(env PX4_SYS_ID)"/>
+  <arg name="tgt_component"           default="1" />
+  <arg name="log_output"              default="screen"/>
+  <arg name="fcu_protocol"            default="v2.0"/>
+  <arg name="respawn_mavros"          default="false"/>
+
+  <arg name="robot"                   default="quadrotor"/>
+	<arg name="mass"                    default="1.74"/>
+	<arg name="max_prop_force"          default="7"/>
+  <arg name="gains_file"              default="$(find control_launch)/config/so3_control_gains.yaml"/>
+	<arg name="odom"                    default="odom"/>
+
+	<arg name="start_nodelet_manager"   default="true"/>
+	<arg name="manager"                 default="$(arg robot)_manager_control"/>
+
+  <include file="$(find starling2_interface)/launch/starling2_qukf.launch">
+    <arg name="odom_slam_topic"       value="$(arg odom_slam_topic)"/>
+    <arg name="imu_topic"             value="$(arg imu_topic)"/>
+    <arg name="frame_id"              value="$(arg odom_frame_id)"/>
+    <arg name="imu_frame_id"          value="$(arg imu_frame_id)"/>
+  </include>
+
+  <include file="$(find starling2_interface)/launch/starling2_mavros.launch">
+    <arg name="fcu_url"               value="$(arg fcu_url)"/>
+    <arg name="gcs_url"               value="$(arg gcs_url)"/>
+    <arg name="tgt_system"            value="$(arg tgt_system)"/>
+    <arg name="tgt_component"         value="$(arg tgt_component)"/>
+    <arg name="log_output"            value="$(arg log_output)"/>
+    <arg name="fcu_protocol"          value="$(arg fcu_protocol)"/>
+
+    <arg name="robot"                 value="$(arg robot)"/>
+    <arg name="mass"                  value="$(arg mass)"/>
+    <arg name="max_prop_force"        value="$(arg max_prop_force)"/>
+    <arg name="gains_file"            value="$(arg gains_file)"/>
+    <arg name="odom"                  value="$(arg odom)"/>
+
+    <arg name="start_nodelet_manager" value="$(arg start_nodelet_manager)"/>
+    <arg name="manager"               value="$(arg manager)"/>
+  </include>
+
+  <include file="$(find starling2_interface)/launch/starling2_control.launch">
+    <arg name="robot"                 value="$(arg robot)"/>
+    <arg name="mass"                  value="$(arg mass)"/>
+    <arg name="max_prop_force"        value="$(arg max_prop_force)"/>
+    <arg name="gains_file"            value="$(arg gains_file)"/>
+    <arg name="odom"                  value="$(arg odom)"/>
+
+    <arg name="start_nodelet_manager" value="$(arg start_nodelet_manager)"/>
+    <arg name="manager"               value="$(arg manager)"/>
+  </include>
+
+</launch>
