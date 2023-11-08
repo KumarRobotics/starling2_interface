@@ -30,7 +30,7 @@
   <include file="$(find starling2_interface)/launch/starling2_qukf.launch">
     <arg name="odom_slam_topic"       value="$(arg odom_slam_topic)"/>
     <arg name="imu_topic"             value="$(arg imu_topic)"/>
-    <arg name="frame_id"              value="$(arg odom_frame_id)"/>
+    <arg name="odom_frame_id"              value="$(arg odom_frame_id)"/>
     <arg name="imu_frame_id"          value="$(arg imu_frame_id)"/>
   </include>
 
