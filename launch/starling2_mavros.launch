@@ -8,13 +8,13 @@
   <arg name="respawn_mavros" default="false" />
 
   <arg name="robot" default="quadrotor"/>
-	<arg name="mass" default="1.74"/>
-	<arg name="max_prop_force" default="7"/>
+  <arg name="mass" default="1.74"/>
+  <arg name="max_prop_force" default="7"/>
   <arg name="gains_file" default="$(find control_launch)/config/so3_control_gains.yaml"/>
-	<arg name="odom" default="odom"/>
-
-	<arg name="start_nodelet_manager" default="true"/>
-	<arg name="manager" default="$(arg robot)_manager_control"/>
+  <arg name="odom" default="odom"/>
+  
+  <arg name="start_nodelet_manager" default="true"/>
+  <arg name="manager" default="$(arg robot)_manager_control"/>
 
   <include file="$(find mavros)/launch/node.launch">
     <arg name="pluginlists_yaml" value="$(find mavros)/launch/px4_pluginlists.yaml" />
@@ -29,6 +29,9 @@
     <arg name="respawn_mavros" default="$(arg respawn_mavros)" />
   </include>
 
-  <include file="$(find mavros_interface)/launch/fla250.launch" />
+  <include file="$(find starling2_interface)/launch/starling2_so3.launch" >
+    <arg name="robot" value="$(arg robot)"/>
+    <arg name="odom" value="$(arg odom)"/>
+  </include>
 
 </launch>

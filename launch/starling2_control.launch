@@ -2,8 +2,7 @@
 <launch>
 	<arg name="robot" default="quadrotor"/>
 	<arg name="mass" default=".175"/>
-	<arg name="max_prop_force" default="7"/>
-  <arg name="gains_file" default="$(find starling2_interface)/config/so3_control_gains.yaml"/>
+  	<arg name="gains_file" default="$(find starling2_interface)/config/so3_control_gains.yaml"/>
 	<arg name="odom" default="odom"/>
 
 	<arg name="start_nodelet_manager" default="true"/>

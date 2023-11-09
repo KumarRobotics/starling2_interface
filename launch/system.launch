@@ -19,18 +19,17 @@
   <arg name="respawn_mavros"          default="false"/>
 
   <arg name="robot"                   default="quadrotor"/>
-	<arg name="mass"                    default="1.74"/>
-	<arg name="max_prop_force"          default="7"/>
+  <arg name="mass"              default="1.74"/>
   <arg name="gains_file"              default="$(find control_launch)/config/so3_control_gains.yaml"/>
-	<arg name="odom"                    default="odom"/>
+  <arg name="odom"              default="/quadrotor_ukf/control_odom"/>
 
-	<arg name="start_nodelet_manager"   default="true"/>
-	<arg name="manager"                 default="$(arg robot)_manager_control"/>
+  <arg name="start_nodelet_manager"   default="true"/>
+  <arg name="manager"                 default="$(arg robot)_manager_control"/>
 
   <include file="$(find starling2_interface)/launch/starling2_qukf.launch">
     <arg name="odom_slam_topic"       value="$(arg odom_slam_topic)"/>
     <arg name="imu_topic"             value="$(arg imu_topic)"/>
-    <arg name="odom_frame_id"              value="$(arg odom_frame_id)"/>
+    <arg name="odom_frame_id"         value="$(arg odom_frame_id)"/>
     <arg name="imu_frame_id"          value="$(arg imu_frame_id)"/>
   </include>
 
@@ -44,7 +43,6 @@
 
     <arg name="robot"                 value="$(arg robot)"/>
     <arg name="mass"                  value="$(arg mass)"/>
-    <arg name="max_prop_force"        value="$(arg max_prop_force)"/>
     <arg name="gains_file"            value="$(arg gains_file)"/>
     <arg name="odom"                  value="$(arg odom)"/>
 
@@ -55,7 +53,6 @@
   <include file="$(find starling2_interface)/launch/starling2_control.launch">
     <arg name="robot"                 value="$(arg robot)"/>
     <arg name="mass"                  value="$(arg mass)"/>
-    <arg name="max_prop_force"        value="$(arg max_prop_force)"/>
     <arg name="gains_file"            value="$(arg gains_file)"/>
     <arg name="odom"                  value="$(arg odom)"/>
 
