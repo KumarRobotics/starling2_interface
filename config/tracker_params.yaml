@@ -1,7 +1,7 @@
 # This should contain tracker parameters
 line_tracker_distance:
-  default_v_des: 2.0
-  default_a_des: 1.0
+  default_v_des: 1.0
+  default_a_des: 0.5
   epsilon: 0.1
 
 line_tracker_min_jerk:

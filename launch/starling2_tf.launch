@@ -13,6 +13,7 @@
 
     <node pkg="starling2_interface" type="pose_to_tf" name="pose_to_tf_node" output="screen" />
     <!--node pkg="tf2_ros" type="static_transform_publisher" name="odom_to_local_tf" args="0 0 0 0 0 3.14 /odom /local" /-->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="body_to_imu_tf" args="0 0 0 0 0 0 /map /odom" />
     <node pkg="tf2_ros" type="static_transform_publisher" name="local_to_odom_tf" args="0 0 0 0 0 3.14 /local /odom" />
     <node pkg="tf2_ros" type="static_transform_publisher" name="normalize_starling_coords" args="0 0 0 0 0 3.14 /body_local /body" />
     <node pkg="tf2_ros" type="static_transform_publisher" name="body_to_imu_tf" args=".0407 -0.006 -0.0188 0 0 0 /body_local /imu" />

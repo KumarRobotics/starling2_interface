@@ -4,31 +4,34 @@
   <arg name="so3_cmd" default="so3_cmd"/>
   <arg name="num_props" default="4.0"/>
 
+
   <!-- Kartik model -->
   <!-- Starling 2 Coefficients-->
   <!-- Modeling the full curve as one quadratic, hence rpm_vs_throttle is identity -->
   <!-- Thrust = a * throttle^2 + b * throttle + c -->
-  <arg name="thrust_vs_rpm_coeff_a" default="8.733e-9"/>
-  <arg name="thrust_vs_rpm_coeff_b" default="-1.444e-5"/>
-  <arg name="thrust_vs_rpm_coeff_c" default=".0166"/>
+  <arg name="thrust_vs_rpm_coeff_a" default="8.428e-9"/>
+  <arg name="thrust_vs_rpm_coeff_b" default="-2.300e-5"/>
+  <arg name="thrust_vs_rpm_coeff_c" default=".0396"/>
   <!-- RPM = a * throttle + b where throttle in [0,1] -->
-  <arg name="rpm_vs_throttle_coeff_a" default="15836"/>
-  <arg name="rpm_vs_throttle_coeff_b" default="1129"/>
+  <arg name="rpm_vs_throttle_coeff_a" default="29591"/>
+  <!-- arg name="rpm_vs_throttle_coeff_b" default="0"/-->
+  <arg name="rpm_vs_throttle_coeff_b" default="0"/>
 
   <group ns="$(arg robot)">
-    <node pkg="nodelet" type="nodelet" args="standalone kr_mavros_interface/SO3CmdToMavros" name="so3cmd_to_mavros" required="true" clear_params="true" output="screen">
+    <node pkg="nodelet" type="nodelet" args="standalone mavros_interface/SO3CmdToMavros" name="so3cmd_to_mavros" required="true" clear_params="true" output="screen">
       <param name="num_props" value="$(arg num_props)"/>
       <param name="thrust_vs_rpm_coeff_a" value="$(arg thrust_vs_rpm_coeff_a)"/>
       <param name="thrust_vs_rpm_coeff_b" value="$(arg thrust_vs_rpm_coeff_b)"/>
       <param name="thrust_vs_rpm_coeff_c" value="$(arg thrust_vs_rpm_coeff_c)"/>
       <param name="rpm_vs_throttle_coeff_a" value="$(arg rpm_vs_throttle_coeff_a)"/>
       <param name="rpm_vs_throttle_coeff_b" value="$(arg rpm_vs_throttle_coeff_b)"/>
+      <param name="use_kartik_thrust_model" value="true"/>
+      <param name="check_psi" value="false"/>
       <remap from="~odom" to="$(arg odom)"/>
       <remap from="~so3_cmd" to="$(arg so3_cmd)"/>
-      <remap from="~imu" to="/imu_apps" />
+      <remap from="~imu" to="/imu/data" />
       <remap from="~attitude_raw" to="/mavros/setpoint_raw/attitude" />
       <remap from="~odom_pose" to="/mavros/vision_pose/pose" />
     </node>
   </group>
 </launch>
-

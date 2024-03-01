@@ -5,7 +5,7 @@
   <arg name="record_bag"              default="false"/>
 
   <arg name="odom_slam_topic"         default="qvio/odometry"/>
-  <arg name="imu_topic"               default="/imu/data"/>
+  <arg name="imu_topic"               default="/imu_apps"/>
   <arg name="odom_frame_id"           default="odom"/>
   <arg name="imu_frame_id"            default="imu"/>
 
@@ -19,12 +19,13 @@
   <arg name="respawn_mavros"          default="false"/>
 
   <arg name="robot"                   default="quadrotor"/>
-  <arg name="mass"              default=".175"/>
-  <arg name="gains_file"              default="$(find control_launch)/config/so3_control_gains.yaml"/>
-  <arg name="odom"              default="/quadrotor_ukf/control_odom"/>
+  <arg name="mass"                    default="0.272"/>
+  <arg name="gains_file"              default="$(find starling2_interface)/config/so3_control_gains.yaml"/>
+  <arg name="odom"                    default="/quadrotor_ukf/control_odom"/>
 
   <arg name="start_nodelet_manager"   default="true"/>
   <arg name="manager"                 default="$(arg robot)_manager_control"/>
+
 
   <include file="$(find starling2_interface)/launch/starling2_qukf.launch">
     <arg name="odom_slam_topic"       value="$(arg odom_slam_topic)"/>
@@ -60,5 +61,5 @@
     <arg name="manager"               value="$(arg manager)"/>
   </include>
 
-  <include file="$(find imu_filter_madgwick)/launch/imu_filter_madgwick.launch"/>
+  <!--include file="$(find imu_filter_madgwick)/launch/imu_filter_madgwick.launch"/-->
 </launch>
