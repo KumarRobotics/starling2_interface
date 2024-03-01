@@ -1,5 +1,11 @@
 # starling2_interface
-Starling 2 Integration
+Starling 2 Interface is meant to be used in cooperation with the following packages:
+// repo::branch - link
+kr_falcon_interface::master - https://github.com/tyuezhan/kr_falcon250_interface/tree/master
+kr_mav_control::master - https://github.com/KumarRobotics/kr_mav_control
+quadrotor_ukf::starling2_integration - https://github.com/tyuezhan/quadrotor_ukf/tree/starling2_integration
+
+TODO: Make Quadrotor_UKF public while keeping commit history
 
 ### Vicon Setup
 ```
