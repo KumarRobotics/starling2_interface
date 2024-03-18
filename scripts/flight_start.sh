@@ -1,6 +1,6 @@
 #!/bin/bash
 session="starling_kr"
-ip_add=$(hostname -i)
+ip_add=$(ip -f inet addr show wlan0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p')
 echo "${ip_add}"
 
 systemctl restart voxl-imu-server
