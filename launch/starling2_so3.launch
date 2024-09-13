@@ -29,7 +29,7 @@
       <param name="check_psi" value="false"/>
       <remap from="~odom" to="$(arg odom)"/>
       <remap from="~so3_cmd" to="$(arg so3_cmd)"/>
-      <remap from="~imu" to="/imu/data" />
+      <remap from="~imu" to="/mavros/imu/data" />
       <remap from="~attitude_raw" to="/mavros/setpoint_raw/attitude" />
       <remap from="~odom_pose" to="/mavros/vision_pose/pose" />
     </node>
